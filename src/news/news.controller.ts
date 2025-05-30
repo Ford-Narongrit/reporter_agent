@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  Query,
 } from '@nestjs/common';
 import { NewsService } from './news.service';
 import { CreateNewsDto } from './dto/create-news.dto';
@@ -23,6 +24,11 @@ export class NewsController {
   @Get()
   findAll() {
     return this.newsService.findAll();
+  }
+
+  @Get('summarize')
+  summarizeNews(@Query('query') query: string) {
+    return this.newsService.summarizeNews(query);
   }
 
   @Get(':id')
